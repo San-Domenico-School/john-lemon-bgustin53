@@ -897,7 +897,7 @@ GameObject:
   - component: {fileID: 3909340249584849136}
   - component: {fileID: 3909340249577406232}
   - component: {fileID: 1802140038636835117}
-  - component: {fileID: 7588918061011436755}
+  - component: {fileID: 3862613687676603766}
   m_Layer: 0
   m_Name: JohnLemon
   m_TagString: Untagged
@@ -934,8 +934,8 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: b44f3940c4940544a8c2c6aee5fa086f, type: 3}
   m_Controller: {fileID: 9100000, guid: ad29eec5f91ca4a61a45a68eafbfb140, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -956,10 +956,10 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
---- !u!65 &7588918061011436755
-BoxCollider:
+--- !u!136 &3862613687676603766
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -968,9 +968,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.5
+  m_Height: 1.37
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.69, z: 0}
 --- !u!1 &3909340249584815314
 GameObject:
   m_ObjectHideFlags: 0
