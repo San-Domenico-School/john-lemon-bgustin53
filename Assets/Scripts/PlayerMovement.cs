@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("IsWalking", true);
-            movement.Normalize();
         }
     }
 
@@ -60,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     //Moves and rotates the player based on an event from the Animator.
     private void OnAnimatorMove()
     {
+        movement.Normalize();
         rb.MovePosition(rb.position + movement * animator.deltaPosition.magnitude);
         rb.MoveRotation(rotation);
     }
