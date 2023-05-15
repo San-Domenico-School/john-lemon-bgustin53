@@ -1,3 +1,10 @@
+/*  This class accepts user input to create player movement and align it with
+ *  the player animation.
+ *  
+ *  Bruce Gustin
+ *  May 9, 2023
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,15 +17,18 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movement;
     private Quaternion rotation;
 
+    // Initializes fields 
     void Start()
     {
         turnSpeed = 20f;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        movement = Vector3.zero;
         rotation = Quaternion.identity;
 
     }
 
+    // Calls methods that change behaviors
     void FixedUpdate()
     {
         SetMovement();
