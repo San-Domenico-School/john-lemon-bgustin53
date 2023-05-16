@@ -11,28 +11,29 @@ public class Observer : MonoBehaviour
 
     void Update()
     {
-        CheckForPlayer();
+        CanGargoyleSeePlayer();
     }
 
-    private void CheckForPlayer()
+    // If the player is in range, this method sees if Gargoyle can see it (not behind a wall).
+    private void CanGargoyleSeePlayer()
     {
         if (isPlayerInRange)
-        //{
-            //Vector3 direction = player.position - transform.position + Vector3.up;
-            //Ray ray = new Ray(transform.position, direction);
-            //RaycastHit raycastHit;
+        {
+            Vector3 direction = player.position - transform.position + Vector3.up;
+            Ray ray = new Ray(transform.position, direction);
+            RaycastHit raycastHit;
 
-            //if (Physics.Raycast(ray, out raycastHit))
-            //{
-            //    if (raycastHit.collider.transform == player)
+            if (Physics.Raycast(ray, out raycastHit))
+            {
+                if (raycastHit.collider.transform == player)
                 {
                     gameEnding.CaughtPlayer();
                 }
-            //}
-        //}
+            }
+        }
     }
 
-
+    // These two methods determine if the player is in range
     void OnTriggerEnter(Collider other)
     {
         if (other.transform == player)
