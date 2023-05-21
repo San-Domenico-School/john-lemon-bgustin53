@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Vector3 movement;
     private Quaternion rotation;
+    private AudioSource audioSource;
 
     // Initializes fields 
     void Start()
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         movement = Vector3.zero;
         rotation = Quaternion.identity;
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -56,6 +58,14 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("IsWalking", true);
+            if (audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.Stop();
+            }
         }
     }
 

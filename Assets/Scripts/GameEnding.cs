@@ -17,12 +17,15 @@ public class GameEnding : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private CanvasGroup exitBackgroundImageCanvasGroup;
     [SerializeField] private CanvasGroup caughtBackgroundImageCanvasGroup;
+    [SerializeField] private AudioSource exitAudio;
+    [SerializeField] private AudioSource caughtAudio;
 
     private float fadeDuration;            // How long the image is visible.
     private float displayImageDuration;    // How long after the image is invisible before the application quits.
     private float timer;                   // Real time.
     private bool isPlayerAtExit;           // True when player collides with trigger.
     private bool isPlayerCaught;           // True when player collides with enemy.
+    private bool hasAudioPlayed;           // Prevents duplicate playing.
 
     // Initialized game design fields
     private void Start()
@@ -36,11 +39,11 @@ public class GameEnding : MonoBehaviour
     {
         if (isPlayerAtExit)
         {
-            EndLevel(exitBackgroundImageCanvasGroup, false);
+            EndLevel(exitBackgroundImageCanvasGroup, false, exitAudio);
         }
         else if(isPlayerCaught)
         {
-            EndLevel(caughtBackgroundImageCanvasGroup, true);
+            EndLevel(caughtBackgroundImageCanvasGroup, true, caughtAudio);
         }
     }
 
@@ -50,8 +53,14 @@ public class GameEnding : MonoBehaviour
     }
 
     // Begins unfading action of ending image
-    void EndLevel(CanvasGroup image, bool restartGame)
+    void EndLevel(CanvasGroup image, bool restartGame, AudioSource audioSource)
     {
+        if (!hasAudioPlayed)
+        {
+            audioSource.Play();
+            hasAudioPlayed = true;
+        }
+
         timer += Time.deltaTime;
 
         image.alpha = timer / fadeDuration;
